@@ -1,0 +1,16 @@
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avif_zip.Form1.resources
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.csproj.GenerateResource.cache
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.GeneratedMSBuildEditorConfig.editorconfig
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.AssemblyInfoInputs.cache
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.AssemblyInfo.cs
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.csproj.CoreCompileInputs.cache
+D:\workSpace\avif zip\bin\Debug\net8.0-windows\avifZip.exe
+D:\workSpace\avif zip\bin\Debug\net8.0-windows\avifZip.deps.json
+D:\workSpace\avif zip\bin\Debug\net8.0-windows\avifZip.runtimeconfig.json
+D:\workSpace\avif zip\bin\Debug\net8.0-windows\avifZip.dll
+D:\workSpace\avif zip\bin\Debug\net8.0-windows\avifZip.pdb
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.dll
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\refint\avifZip.dll
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.pdb
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.genruntimeconfig.cache
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\ref\avifZip.dll

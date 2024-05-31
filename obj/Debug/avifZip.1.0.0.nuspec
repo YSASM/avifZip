@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>avifZip</id>
+    <version>1.0.0</version>
+    <authors>avifZip</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net8.0-windows7.0" />
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="D:\workSpace\avif zip\bin\Debug\net8.0-windows\avifZip.runtimeconfig.json" target="lib\net8.0-windows7.0\avifZip.runtimeconfig.json" />
+    <file src="D:\workSpace\avif zip\bin\Debug\net8.0-windows\avifZip.dll" target="lib\net8.0-windows7.0\avifZip.dll" />
+  </files>
+</package>

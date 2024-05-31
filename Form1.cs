@@ -248,8 +248,8 @@ namespace avif_zip
                 var runCmd = cmd.Replace("{path}", path);
                 runCmd = runCmd.Replace("{filename}", fileName);
                 RunCMDCommand(runCmd);
-                listView1.Items.Clear();
             }
+            listView1.Items.Clear();
         }
 
         private void label2_Click_1(object sender, EventArgs e)

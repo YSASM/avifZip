@@ -14,3 +14,4 @@ D:\workSpace\avif zip\obj\Debug\net8.0-windows\refint\avifZip.dll
 D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.pdb
 D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.genruntimeconfig.cache
 D:\workSpace\avif zip\obj\Debug\net8.0-windows\ref\avifZip.dll
+D:\workSpace\avif zip\obj\Debug\net8.0-windows\avifZip.sourcelink.json

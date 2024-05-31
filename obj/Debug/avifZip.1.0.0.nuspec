@@ -5,7 +5,7 @@
     <version>1.0.0</version>
     <authors>avifZip</authors>
     <description>Package Description</description>
-    <repository type="git" />
+    <repository type="git" commit="c34810549b33fa26e3d9264d87c596e3bb97a448" />
     <dependencies>
       <group targetFramework="net8.0-windows7.0" />
     </dependencies>

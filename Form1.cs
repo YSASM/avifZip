@@ -46,7 +46,7 @@ namespace avif_zip
             else
                 e.Effect = DragDropEffects.None;
         }
-        private string[] acceptType = ["png", "jpeg", "jpg"];
+        private string[] acceptType = ["png", "jpeg", "jpg", "tif", "tiff", "bmp", "heic", "heif", "avif", "webp", "jfif", "gif", "ico", "exr", "hdr"];
 
         private bool ExistImage(string path)
         {

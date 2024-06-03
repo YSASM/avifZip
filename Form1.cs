@@ -22,7 +22,7 @@ namespace avif_zip
             modechoose.Items.Add("极限压缩");
             modechoose.SelectedIndex = 0;
             bianmasuduinput.Text = "0";
-            crfinput.Text = "0";
+            crfinput.Text = "23";
             ffmpeginput.Text = System.Environment.CurrentDirectory + "\\ffmpeg.exe";
             savepathinput.Text = System.Environment.CurrentDirectory + "\\output";
         }
@@ -137,7 +137,7 @@ namespace avif_zip
         {
             using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
             {
-                folderBrowserDialog.Description = "请选择一个文件夹";
+                folderBrowserDialog.Description = "请选择一个文件夹，输出的文件将会保存在你选择的文件夹内";
                 DialogResult dialogResult = folderBrowserDialog.ShowDialog();
 
                 if (dialogResult == DialogResult.OK)
@@ -152,7 +152,7 @@ namespace avif_zip
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Title = "选择文件";
+                openFileDialog.Title = "选择 ffmpeg.exe 文件";
                 openFileDialog.Filter = "所有文件 (*.*)|*.*";
                 openFileDialog.FilterIndex = 1;
 
@@ -209,12 +209,12 @@ namespace avif_zip
             }
             if (ffmpeginput.Text == "")
             {
-                MessageBox.Show("请填写ffmpeg.exe路径", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("你没有填写路径，请填写 ffmpeg.exe 文件所在的路径（包含文件名）", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (savepathinput.Text == "")
             {
-                MessageBox.Show("请填写保存路径", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("你没有填写路径，请填写输出文件的保存路径", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (bianmasuduinput.Text == "")
@@ -229,7 +229,7 @@ namespace avif_zip
             System.Collections.IList list = listView1.Items;
             if (listView1.Items.Count <= 0)
             {
-                MessageBox.Show("没有选择任何文件", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("你还没有选择任何文件，请把图片或包含图片的文件夹拖拽至文件列表", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (!Directory.Exists(savepathinput.Text))
@@ -258,6 +258,11 @@ namespace avif_zip
         }
 
         private void label2_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ffmpeg_Click(object sender, EventArgs e)
         {
 
         }

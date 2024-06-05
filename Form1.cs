@@ -27,6 +27,8 @@ namespace avif_zip
             savepathinput.Text = System.Environment.CurrentDirectory + "\\output";
         }
 
+        private int taskCount = 0;
+
         private void ListView1_MouseUp(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -164,39 +166,60 @@ namespace avif_zip
             }
         }
 
-        private void RunCMDCommand(string command)
+        private async void RunCMDCommand(string command)
         {
-            resbox.Text = "";
-            ProcessStartInfo startInfo = new ProcessStartInfo("cmd.exe")
+            ProcessStartInfo startInfo = new ProcessStartInfo(ffmpeginput.Text)
             {
+                Arguments = command,
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 UseShellExecute = false,
-                CreateNoWindow = false,
+                CreateNoWindow = true,
             };
 
-            Process cmdProcess = new Process()
+            Process p = new Process()
             {
-                StartInfo = startInfo
+                StartInfo = startInfo,
             };
-
-            cmdProcess.Start();
-            cmdProcess.StandardInput.WriteLine(command);
-            cmdProcess.StandardInput.WriteLine("exit");
-
-            cmdProcess.BeginOutputReadLine();
-            cmdProcess.OutputDataReceived += CmdProcess_OutputDataReceived;
-        }
-        private void CmdProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(e.Data))
+            p.ErrorDataReceived += new DataReceivedEventHandler(delegate (object sender, DataReceivedEventArgs e)
             {
-                // 在这里处理实时接收到的输出
-                // 例如，更新UI线程中的文本框来显示结果
-                this.Invoke(new Action(() =>
+                if (!string.IsNullOrEmpty(e.Data))
                 {
-                    resbox.AppendText(e.Data + Environment.NewLine);
-                }));
+                    // 在这里处理实时接收到的输出
+                    // 例如，更新UI线程中的文本框来显示结果
+                    this.Invoke(new Action(() =>
+                    {
+                        resbox.AppendText(e.Data + Environment.NewLine);
+                    }));
+                }
+            });
+            p.OutputDataReceived += new DataReceivedEventHandler(delegate (object sender, DataReceivedEventArgs e)
+            {
+                if (!string.IsNullOrEmpty(e.Data))
+                {
+                    // 在这里处理实时接收到的输出
+                    // 例如，更新UI线程中的文本框来显示结果
+                    this.Invoke(new Action(() =>
+                    {
+                        resbox.AppendText(e.Data + Environment.NewLine);
+                    }));
+                }
+            });
+
+            p.Start();
+            p.BeginErrorReadLine();
+            p.BeginOutputReadLine();
+            //p.StandardInput.WriteLine(command);
+            //p.StandardInput.WriteLine("echo Done");
+            //p.StandardInput.WriteLine("exit");
+            await p.WaitForExitAsync();
+            taskCount--;
+            startbtn.Text = "剩余任务数:" + taskCount as string;
+            if (taskCount == 0) { 
+                startbtn.Enabled = true;
+                startbtn.Text = "开始";
+                resbox.AppendText("Done" + Environment.NewLine);
             }
         }
 
@@ -225,7 +248,7 @@ namespace avif_zip
             {
                 crfinput.Text = "0";
             }
-            var cmd = "\"" + ffmpeginput.Text + "\" -i \"{path}\" -c:v libaom-av1 " + mode + " -cpu-used " + bianmasuduinput.Text + " -crf " + crfinput.Text + " \"" + savepathinput.Text + "\\{filename}.avif\"";
+            var cmd = " -i \"{path}\" -c:v libaom-av1 " + mode + " -cpu-used " + bianmasuduinput.Text + " -crf " + crfinput.Text + " \"" + savepathinput.Text + "\\{filename}.avif\"";
             System.Collections.IList list = listView1.Items;
             if (listView1.Items.Count <= 0)
             {
@@ -236,6 +259,8 @@ namespace avif_zip
             {
                 Directory.CreateDirectory(savepathinput.Text);
             }
+            startbtn.Enabled = false;
+            resbox.Text = "";
             for (int i = 0; i < list.Count; i++)
             {
                 ListViewItem item = (ListViewItem)list[i];
@@ -243,13 +268,24 @@ namespace avif_zip
                 var fileName = (string)item.Text.Split(".")[0];
                 if (File.Exists(savepathinput.Text + "\\" + fileName + ".avif"))
                 {
-                    File.Delete(savepathinput.Text + "\\" + fileName + ".avif");
+                    try
+                    {
+                        File.Delete(savepathinput.Text + "\\" + fileName + ".avif");
+                    }
+                    catch
+                    {
+                        continue;
+                    }
                 }
                 var runCmd = cmd.Replace("{path}", path);
                 runCmd = runCmd.Replace("{filename}", fileName);
+                taskCount ++;
+                startbtn.Text = "剩余任务数:" + taskCount as string;
                 RunCMDCommand(runCmd);
             }
             listView1.Items.Clear();
+            
+            
         }
 
         private void label2_Click_1(object sender, EventArgs e)

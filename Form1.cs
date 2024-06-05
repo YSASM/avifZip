@@ -266,17 +266,25 @@ namespace avif_zip
                 ListViewItem item = (ListViewItem)list[i];
                 var path = (string)item.Tag;
                 var fileName = (string)item.Text.Split(".")[0];
-                if (File.Exists(savepathinput.Text + "\\" + fileName + ".avif"))
+                var flage = 0;
+                while (flage!=-1)
                 {
-                    try
+                    var temp = fileName;
+                    if (flage > 0)
                     {
-                        File.Delete(savepathinput.Text + "\\" + fileName + ".avif");
+                        temp = fileName + "_" + flage as string;
                     }
-                    catch
+                    if (File.Exists(savepathinput.Text + "\\" + temp + ".avif"))
                     {
-                        continue;
+                        flage++;
+                    }
+                    else
+                    {
+                        fileName = temp;
+                        flage = -1;
                     }
                 }
+                
                 var runCmd = cmd.Replace("{path}", path);
                 runCmd = runCmd.Replace("{filename}", fileName);
                 taskCount ++;

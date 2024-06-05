@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("avifZip")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b800ac9dae4bf9626382b3b1c72edec80fb932c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55aa7fc4d30f99c286b3544b6f9ad3d1746e8a43")]
 [assembly: System.Reflection.AssemblyProductAttribute("avifZip")]
 [assembly: System.Reflection.AssemblyTitleAttribute("avifZip")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -51,97 +51,97 @@
             // listView1
             // 
             listView1.AllowDrop = true;
-            listView1.Location = new Point(13, 30);
-            listView1.Margin = new Padding(4, 3, 4, 3);
+            listView1.Location = new Point(24, 51);
+            listView1.Margin = new Padding(7, 5, 7, 5);
             listView1.Name = "listView1";
-            listView1.Size = new Size(226, 410);
+            listView1.Size = new Size(416, 697);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.List;
+            listView1.View = View.SmallIcon;
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(13, 8);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(24, 14);
+            label1.Margin = new Padding(7, 0, 7, 0);
             label1.Name = "label1";
-            label1.Size = new Size(43, 17);
+            label1.Size = new Size(77, 29);
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 
             // bianmasuduinput
             // 
-            bianmasuduinput.Location = new Point(250, 51);
-            bianmasuduinput.Margin = new Padding(4, 3, 4, 3);
+            bianmasuduinput.Location = new Point(464, 87);
+            bianmasuduinput.Margin = new Padding(7, 5, 7, 5);
             bianmasuduinput.Name = "bianmasuduinput";
-            bianmasuduinput.Size = new Size(488, 23);
+            bianmasuduinput.Size = new Size(903, 39);
             bianmasuduinput.TabIndex = 2;
             // 
             // modechoose
             // 
             modechoose.FormattingEnabled = true;
-            modechoose.Location = new Point(250, 416);
-            modechoose.Margin = new Padding(4, 3, 4, 3);
+            modechoose.Location = new Point(464, 710);
+            modechoose.Margin = new Padding(7, 5, 7, 5);
             modechoose.Name = "modechoose";
-            modechoose.Size = new Size(148, 25);
+            modechoose.Size = new Size(271, 37);
             modechoose.TabIndex = 3;
             // 
             // bianmasudu
             // 
             bianmasudu.AutoEllipsis = true;
             bianmasudu.AutoSize = true;
-            bianmasudu.Location = new Point(250, 30);
-            bianmasudu.Margin = new Padding(4, 0, 4, 0);
+            bianmasudu.Location = new Point(464, 51);
+            bianmasudu.Margin = new Padding(7, 0, 7, 0);
             bianmasudu.Name = "bianmasudu";
-            bianmasudu.Size = new Size(56, 17);
+            bianmasudu.Size = new Size(109, 29);
             bianmasudu.TabIndex = 4;
             bianmasudu.Text = "编码速度";
             // 
             // crf
             // 
             crf.AutoSize = true;
-            crf.Location = new Point(250, 85);
-            crf.Margin = new Padding(4, 0, 4, 0);
+            crf.Location = new Point(464, 145);
+            crf.Margin = new Padding(7, 0, 7, 0);
             crf.Name = "crf";
-            crf.Size = new Size(30, 17);
+            crf.Size = new Size(54, 29);
             crf.TabIndex = 5;
             crf.Text = "CRF";
             crf.Click += crf_Click;
             // 
             // crfinput
             // 
-            crfinput.Location = new Point(250, 106);
-            crfinput.Margin = new Padding(4, 3, 4, 3);
+            crfinput.Location = new Point(464, 181);
+            crfinput.Margin = new Padding(7, 5, 7, 5);
             crfinput.Name = "crfinput";
-            crfinput.Size = new Size(488, 23);
+            crfinput.Size = new Size(903, 39);
             crfinput.TabIndex = 6;
             // 
             // savepath
             // 
             savepath.AutoSize = true;
-            savepath.Location = new Point(250, 144);
-            savepath.Margin = new Padding(4, 0, 4, 0);
+            savepath.Location = new Point(464, 246);
+            savepath.Margin = new Padding(7, 0, 7, 0);
             savepath.Name = "savepath";
-            savepath.Size = new Size(56, 17);
+            savepath.Size = new Size(109, 29);
             savepath.TabIndex = 7;
             savepath.Text = "保存路径";
             savepath.Click += label2_Click;
             // 
             // savepathinput
             // 
-            savepathinput.Location = new Point(336, 140);
-            savepathinput.Margin = new Padding(4, 3, 4, 3);
+            savepathinput.Location = new Point(624, 239);
+            savepathinput.Margin = new Padding(7, 5, 7, 5);
             savepathinput.Name = "savepathinput";
-            savepathinput.Size = new Size(316, 23);
+            savepathinput.Size = new Size(583, 39);
             savepathinput.TabIndex = 8;
             // 
             // choosesavepath
             // 
-            choosesavepath.Location = new Point(664, 140);
-            choosesavepath.Margin = new Padding(4, 3, 4, 3);
+            choosesavepath.Location = new Point(1233, 239);
+            choosesavepath.Margin = new Padding(7, 5, 7, 5);
             choosesavepath.Name = "choosesavepath";
-            choosesavepath.Size = new Size(75, 21);
+            choosesavepath.Size = new Size(139, 36);
             choosesavepath.TabIndex = 9;
             choosesavepath.Text = "浏览";
             choosesavepath.UseVisualStyleBackColor = true;
@@ -150,28 +150,28 @@
             // ffmpeg
             // 
             ffmpeg.AutoSize = true;
-            ffmpeg.Location = new Point(250, 178);
-            ffmpeg.Margin = new Padding(4, 0, 4, 0);
+            ffmpeg.Location = new Point(464, 304);
+            ffmpeg.Margin = new Padding(7, 0, 7, 0);
             ffmpeg.Name = "ffmpeg";
-            ffmpeg.Size = new Size(74, 17);
+            ffmpeg.Size = new Size(139, 29);
             ffmpeg.TabIndex = 10;
             ffmpeg.Text = "ffmpeg路径";
             ffmpeg.Click += ffmpeg_Click;
             // 
             // ffmpeginput
             // 
-            ffmpeginput.Location = new Point(336, 174);
-            ffmpeginput.Margin = new Padding(4, 3, 4, 3);
+            ffmpeginput.Location = new Point(624, 297);
+            ffmpeginput.Margin = new Padding(7, 5, 7, 5);
             ffmpeginput.Name = "ffmpeginput";
-            ffmpeginput.Size = new Size(316, 23);
+            ffmpeginput.Size = new Size(583, 39);
             ffmpeginput.TabIndex = 11;
             // 
             // ffmpegchoose
             // 
-            ffmpegchoose.Location = new Point(664, 174);
-            ffmpegchoose.Margin = new Padding(4, 3, 4, 3);
+            ffmpegchoose.Location = new Point(1233, 297);
+            ffmpegchoose.Margin = new Padding(7, 5, 7, 5);
             ffmpegchoose.Name = "ffmpegchoose";
-            ffmpegchoose.Size = new Size(75, 21);
+            ffmpegchoose.Size = new Size(139, 36);
             ffmpegchoose.TabIndex = 12;
             ffmpegchoose.Text = "浏览";
             ffmpegchoose.UseVisualStyleBackColor = true;
@@ -179,10 +179,10 @@
             // 
             // startbtn
             // 
-            startbtn.Location = new Point(410, 416);
-            startbtn.Margin = new Padding(4, 3, 4, 3);
+            startbtn.Location = new Point(761, 710);
+            startbtn.Margin = new Padding(7, 5, 7, 5);
             startbtn.Name = "startbtn";
-            startbtn.Size = new Size(328, 21);
+            startbtn.Size = new Size(609, 36);
             startbtn.TabIndex = 13;
             startbtn.Text = "开始";
             startbtn.UseVisualStyleBackColor = true;
@@ -190,21 +190,21 @@
             // 
             // resbox
             // 
-            resbox.Location = new Point(250, 230);
-            resbox.Margin = new Padding(4, 3, 4, 3);
+            resbox.Location = new Point(464, 392);
+            resbox.Margin = new Padding(7, 5, 7, 5);
             resbox.Multiline = true;
             resbox.Name = "resbox";
             resbox.ScrollBars = ScrollBars.Vertical;
-            resbox.Size = new Size(488, 176);
+            resbox.Size = new Size(903, 297);
             resbox.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(250, 208);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(464, 355);
+            label2.Margin = new Padding(7, 0, 7, 0);
             label2.Name = "label2";
-            label2.Size = new Size(56, 17);
+            label2.Size = new Size(109, 29);
             label2.TabIndex = 14;
             label2.Text = "运行结果";
             label2.Click += label2_Click_2;
@@ -213,30 +213,30 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ControlText;
-            label3.Location = new Point(310, 30);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(576, 51);
+            label3.Margin = new Padding(7, 0, 7, 0);
             label3.Name = "label3";
-            label3.Size = new Size(203, 17);
+            label3.Size = new Size(736, 29);
             label3.TabIndex = 15;
-            label3.Text = "(数字0-8)，值越小速度越慢画质越高";
+            label3.Text = "(极高压缩下支持数字0-13，其他模式0-8)，值越小速度越慢画质越高";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(280, 85);
-            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Location = new Point(520, 145);
+            label4.Margin = new Padding(7, 0, 7, 0);
             label4.Name = "label4";
-            label4.Size = new Size(310, 17);
+            label4.Size = new Size(584, 29);
             label4.TabIndex = 16;
-            label4.Text = "(数字0-63)，0为无损，1到63数字越小文件越大画质越高";
+            label4.Text = "(数字0-63)，0为无损，1到63值越小文件越大画质越高";
             // 
             // Form1
             // 
             AcceptButton = startbtn;
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(13F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(750, 451);
+            ClientSize = new Size(1393, 769);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -255,10 +255,11 @@
             Controls.Add(bianmasuduinput);
             Controls.Add(label1);
             Controls.Add(listView1);
-            Margin = new Padding(4, 3, 4, 3);
+            Margin = new Padding(7, 5, 7, 5);
             MaximizeBox = false;
             Name = "Form1";
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();

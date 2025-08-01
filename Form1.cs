@@ -18,8 +18,9 @@ namespace avif_zip
             listView1.DragEnter += ListView1_DragEnter;
             listView1.MouseUp += ListView1_MouseUp;
             label1.Text = "将图片或包含图片的文件夹拖拽至下方列表（右键可删除）";
-            modechoose.Items.Add("保留精度");
-            modechoose.Items.Add("极限压缩");
+            modechoose.Items.Add("保留色彩精度");
+            modechoose.Items.Add("极高压缩 (较快)");
+            modechoose.Items.Add("最高压缩");
             modechoose.SelectedIndex = 0;
             bianmasuduinput.Text = "0";
             crfinput.Text = "23";
@@ -48,7 +49,7 @@ namespace avif_zip
             else
                 e.Effect = DragDropEffects.None;
         }
-        private string[] acceptType = ["png", "jpeg", "jpg", "tif", "tiff", "bmp", "heic", "heif", "avif", "webp", "jfif", "gif", "ico", "exr", "hdr"];
+        private string[] acceptType = ["png", "jpeg", "jpg", "tif", "tiff", "bmp", "heic", "heif", "avif", "webp", "jfif", "gif", "ico", "exr", "hdr", "jp2", "j2k", "jxl"];
 
         private bool ExistImage(string path)
         {
@@ -166,69 +167,90 @@ namespace avif_zip
             }
         }
 
+        private readonly SemaphoreSlim processSemaphore = new SemaphoreSlim(2);
+
         private async void RunCMDCommand(string command)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo(ffmpeginput.Text)
+            await processSemaphore.WaitAsync();
+            try
             {
-                Arguments = command,
-                RedirectStandardInput = true,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            };
-
-            Process p = new Process()
-            {
-                StartInfo = startInfo,
-            };
-            p.ErrorDataReceived += new DataReceivedEventHandler(delegate (object sender, DataReceivedEventArgs e)
-            {
-                if (!string.IsNullOrEmpty(e.Data))
+                ProcessStartInfo startInfo = new ProcessStartInfo(ffmpeginput.Text)
                 {
+                    Arguments = command,
+                    RedirectStandardInput = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                };
+
+                resbox.AppendText("\r\n" + command + "\r\n\r\n");
+
+                Process p = new Process()
+                {
+                    StartInfo = startInfo,
+                };
+                p.ErrorDataReceived += new DataReceivedEventHandler(delegate (object sender, DataReceivedEventArgs e)
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
                     // 在这里处理实时接收到的输出
                     // 例如，更新UI线程中的文本框来显示结果
-                    this.Invoke(new Action(() =>
-                    {
-                        resbox.AppendText(e.Data + Environment.NewLine);
-                    }));
-                }
-            });
-            p.OutputDataReceived += new DataReceivedEventHandler(delegate (object sender, DataReceivedEventArgs e)
-            {
-                if (!string.IsNullOrEmpty(e.Data))
+                        this.Invoke(new Action(() =>
+                        {
+                            resbox.AppendText(e.Data + Environment.NewLine);
+                        }));
+                    }
+                });
+                p.OutputDataReceived += new DataReceivedEventHandler(delegate (object sender, DataReceivedEventArgs e)
                 {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
                     // 在这里处理实时接收到的输出
                     // 例如，更新UI线程中的文本框来显示结果
-                    this.Invoke(new Action(() =>
-                    {
-                        resbox.AppendText(e.Data + Environment.NewLine);
-                    }));
-                }
-            });
+                        this.Invoke(new Action(() =>
+                        {
+                            resbox.AppendText(e.Data + Environment.NewLine);
+                        }));
+                    }
+                });
 
-            p.Start();
-            p.BeginErrorReadLine();
-            p.BeginOutputReadLine();
+                p.Start();
+                p.BeginErrorReadLine();
+                p.BeginOutputReadLine();
             //p.StandardInput.WriteLine(command);
             //p.StandardInput.WriteLine("echo Done");
             //p.StandardInput.WriteLine("exit");
-            await p.WaitForExitAsync();
-            taskCount--;
-            startbtn.Text = "剩余任务数:" + taskCount as string;
-            if (taskCount == 0) { 
-                startbtn.Enabled = true;
-                startbtn.Text = "开始";
-                resbox.AppendText("Done" + Environment.NewLine);
+                await p.WaitForExitAsync();
+                taskCount--;
+                startbtn.Text = "剩余任务数:" + taskCount as string;
+                if (taskCount == 0)
+                {
+                    startbtn.Enabled = true;
+                    startbtn.Text = "开始";
+                    resbox.AppendText("Done" + Environment.NewLine);
+                }
+            }
+            finally
+            {
+                processSemaphore.Release();
             }
         }
 
         private void Start(object sender, EventArgs e)
         {
             var mode = "";
-            if (modechoose.SelectedIndex == 1)
+            if (modechoose.SelectedIndex == 0)
             {
-                mode = "-pix_fmt yuv444p";
+                mode = "-c:v libaom-av1 -aom-params enable-qm=1:enable-chroma-deltaq=1:tune=ssim -cpu-used ";
+            }
+            else if (modechoose.SelectedIndex == 2)
+            {
+                mode = "-vf format=yuv420p -c:v libaom-av1 -aom-params enable-qm=1:enable-chroma-deltaq=1:tune=ssim -cpu-used ";
+            }
+            else
+            {
+                mode = "-vf format=yuv420p -c:v libsvtav1 -svtav1-params avif=1:tune=0 -preset ";
             }
             if (ffmpeginput.Text == "")
             {
@@ -248,7 +270,7 @@ namespace avif_zip
             {
                 crfinput.Text = "0";
             }
-            var cmd = " -i \"{path}\" -c:v libaom-av1 " + mode + " -cpu-used " + bianmasuduinput.Text + " -crf " + crfinput.Text + " \"" + savepathinput.Text + "\\{filename}.avif\"";
+            var cmd = " -i \"{path}\" " + mode + bianmasuduinput.Text + " -crf " + crfinput.Text + " \"" + savepathinput.Text + "\\{filename}.avif\"";
             System.Collections.IList list = listView1.Items;
             if (listView1.Items.Count <= 0)
             {
